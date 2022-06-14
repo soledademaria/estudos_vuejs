@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="vue.js"></script>
+    <title>Instâncias</title>
+  </head>
+  <body>
+    <!-- Criar uma tag com o id app e iniciar instância vue -->
+    <div id="app">
+      <p>{{title}}</p>
+    </div>
+
+    <!-- Fazer o html abaixo funcionar com vue -->
+    <div id="app1">
+      <p>{{ferramenta}}</p>
+    </div>
+
+    <div id="app2">
+      <p>{{instrumento}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          title: "Minha instância Vue.js :)",
+          ferramenta: 'Martelo'
+        },
+      });
+      const vm1 = new Vue({
+        el: "#app1",
+        data: {
+          ferramenta: vm.ferramenta,
+        },
+      });
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          instrumento: "Violão",
+        },
+      });
+    </script>
+  </body>
+</html>
