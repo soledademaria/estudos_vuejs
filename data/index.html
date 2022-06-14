@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Data</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- Data é responsável por dar a reatividade aos estados,
+    definindo os seus getters e setters. Recebe uma função -->
+
+    <!-- Toda propriedade dentro de data é representada diretamente no objeto Vue -->
+
+    <!-- Caso você vá precisar de uma propriedade no futuro, é necessário que a mesma seja
+especificada, mesmo que como uma string vazia, 0 ou null -->
+
+    <div id="app">
+      <p>{{title}}</p>
+
+      <button @click="changePhrase">Change Phrase</button>
+
+      <h4>Calcular perimetro</h4>
+      <p>{{lado}}</p>
+      <p>Perimetro: {{lado * 4}}</p>
+      <p>Área: {{lado * lado}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            title: "Usando o data",
+            lado: 20,
+          };
+        },
+        created() {
+          alert("Componente criado");
+        },
+        beforeCreate(){
+          alert('Esperando componente ser criado')
+        },
+        methods: {
+          changePhrase() {
+            this.title = "Mudei a frase hihih";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
