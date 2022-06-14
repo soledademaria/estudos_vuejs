@@ -17,7 +17,7 @@
         *O número não pode mais ser decrementado!
       </p>
 
-      <p>{{segredo.slip}}</p>
+      <p>{{segredo.advice}}</p>
       <button @click="conselhoDoDia">Revele o segredo do dia</button>
     </div>
 
@@ -47,7 +47,8 @@
             fetch('https://api.adviceslip.com/advice')
             .then(response => response.json())
             .then(json => {
-              this.segredo = json
+              this.segredo = json.slip
+              console.log(this.segredo);
             })
           }
         },
