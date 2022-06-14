@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Methods</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="count-area">
+        <button class="app_button" @click="decrementar"  ></button></button>
+        <p>{{count}}</p>
+        <button class="app_button" @click="incrementar">+</button>
+      </div>
+
+      <p v-show="showMessageError" class="error-message">
+        *O número não pode mais ser decrementado!
+      </p>
+
+      <p>{{segredo.slip}}</p>
+      <button @click="conselhoDoDia">Revele o segredo do dia</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            count: 0,
+            showMessageError: false,
+            segredo: {}
+          };
+        },
+        methods: {
+          decrementar() {
+            this.count--;
+            if (this.count < 0) {
+              this.count = 0;
+              this.showMessageError = true
+            }
+          },
+          incrementar() {
+            this.count++;
+            this.showMessageError = false
+          },
+          conselhoDoDia(){
+            fetch('https://api.adviceslip.com/advice')
+            .then(response => response.json())
+            .then(json => {
+              this.segredo = json
+            })
+          }
+        },
+        computed:{
+          disabled(){
+            return this.count <= 0
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+<style>
+  .count-area {
+    display: flex;
+    align-items: center;
+  }
+  .app_button {
+    display: flex;
+    align-items: center;
+    height: 1rem;
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 0 10px;
+    background: green;
+    color: white;
+  }
+  .app_button:first-child {
+    background: red;
+  }
+  .error-message{
+    color: red;
+    font-family: monospace;
+  }
+</style>
+
+
+
