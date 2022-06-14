@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>V-Bind</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Diretiva que permite a utilização de expressões dentro de
+        atributos html -->
+
+      <button @click="purchase" class="purchase-btn">Comprar</button>
+
+      <p :class="bought ? 'green' :  'red' ">{{bought ? 'Compra realizada!' : '*Aguardando compra'}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            link: "https://www.google.com",
+            cor: "darkblue",
+            bought: false,
+          };
+        },
+        methods: {
+          purchase() {
+            this.bought = true;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+<style>
+    .purchase-btn{
+        outline: none;
+        border: none;
+        padding: 15px;
+        background: green;
+        color: white;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    .green{
+        color: green;
+    }
+    .red{
+        color: red;
+    }
+</style>
