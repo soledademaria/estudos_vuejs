@@ -14,6 +14,9 @@
 
       <button v-on:click="reverseMessage">Inverter Mensagem</button>
       {{message}}
+
+      <input  type="text" @keyup.enter="myMessage">
+      {{myMessage}}
     </div>
 
     <script>
@@ -21,7 +24,8 @@
         el: "#app",
         data(){
             return{
-                message: 'Hi!!'
+                message: 'Hi!!',
+                myMessage: ''
             }
         },
         methods: {
@@ -30,6 +34,9 @@
           },
           reverseMessage(){
             this.message = this.message.split('').reverse().join('')
+          },
+          myMessage(value){
+            this.myMessage = value
           }
         },
       });

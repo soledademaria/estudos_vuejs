@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>V-if</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- V-if -->
+
+    <div id="app">
+      <p>Produtos disponíveis no estoque: <strong>{{quantity}}</strong></p>
+      <p v-show="limitReached">
+        **oops, não é possivel adicionar mais que 7 produtos
+      </p>
+
+      <button v-show="!limitReached" @click="addProduct">
+        Adicionar ao carrinho
+      </button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            quantity: 0,
+            limitReached: false,
+          };
+        },
+        methods: {
+          addProduct() {
+            this.quantity++;
+            if (this.quantity >= 7) {
+              this.limitReached = true;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+<style></style>
