@@ -10,7 +10,7 @@
       <!-- Diretiva que permite a utilização de expressões dentro de
         atributos html -->
 
-      <button @click="purchase" class="purchase-btn">Comprar</button>
+      <button @click="bought = !bought" class="purchase-btn">Comprar</button>
 
       <p :class="bought ? 'green' :  'red' ">{{bought ? 'Compra realizada!' : '*Aguardando compra'}}</p>
     </div>
