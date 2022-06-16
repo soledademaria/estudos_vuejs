@@ -9,16 +9,28 @@
     <div id="app">
       <form class="form">
         <div class="input-container">
-          <label for="firstName">Nome: </label>
-          <input v-model="firstName" type="text" name="firstName" />
+          <div>
+            <label for="firstName">Nome: </label> <br />
+            <input
+              v-model="firstName"
+              type="text"
+              name="firstName"
+              placeholder="Digite seu nome!"
+            />
+          </div>
 
-          <label for="firstName">Sobrenome: </label>
-          <input v-model="lastName" type="text" name="lastName" />
+          <div>
+            <label for="firstName">Sobrenome: </label> <br />
+            <input
+              v-model="lastName"
+              type="text"
+              name="lastName"
+              placeholder="Digite seu sobrenome!"
+            />
+          </div>
+        </div>
 
-         <span style="margin-bottom: 10px">
-            Seu nome completo é: {{fullName}}
-         </span>
-
+        <div style="padding: 0px 20px">
           <span>Selecione o pais onde você nasceu: </span>
           <select name="countries" id="countries" v-model="countriesSelecteds">
             <option
@@ -29,11 +41,15 @@
               {{country.name}}
             </option>
           </select>
-
-         <span style="margin-top:10px">A capital do país onde você nasceu é: 
-            {{capital}}
-         </span>
         </div>
+        <br />
+        <div style="margin-bottom: 20px; padding: 0 20px">
+          <span> Seu nome completo é: <strong>{{fullName}}</strong> </span>
+        </div>
+        <br />
+        <span style="margin-top: 10px; padding: 0 20px"
+          >A capital do país onde você nasceu é: <strong>{{capital}}</strong>
+        </span>
       </form>
     </div>
 
@@ -72,18 +88,23 @@
   </body>
 </html>
 <style>
+  body {
+    background: #05295c;
+  }
   .form {
-    width: 20rem;
+    width: 27rem;
     height: 20rem;
-    margin: auto;
-    background-color: rgb(233, 167, 189);
+    margin: 150px auto;
+    background-color: #8faeda34;
     color: #fff;
     border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
   .input-container {
     display: flex;
-    flex-direction: column;
-    padding: 50px 10px;
+    justify-content: space-between;
+
+    padding: 10px 20px;
   }
   input {
     border: none;
