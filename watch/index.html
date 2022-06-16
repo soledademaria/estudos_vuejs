@@ -9,8 +9,11 @@
     <div id="app">
       <input v-model="cep" type="text" placeholder="cep" maxlength="8" />
       <p>Meu endereço é: <br>
-        Rua: {{adress.logradouro}} <br>
-        Bairro {{adress.bairro}}</p>
+       <ul>
+        <li v-for="(value, key) in adress">
+         {{key}}: {{value}}
+        </li>
+       </ul>
     </div>
 
     <script>
@@ -19,7 +22,7 @@
         data() {
           return {
             cep: "",
-            adress: "",
+            adress: {},
           };
         },
         watch: {

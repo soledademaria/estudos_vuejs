@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="vue.js"></script>
+    <title>Exercicios</title>
+  </head>
+  <body>
+    <div id="app">
+      <form class="form">
+        <div class="input-container">
+          <label for="firstName">Nome: </label>
+          <input v-model="firstName" type="text" name="firstName" />
+
+          <label for="firstName">Sobrenome: </label>
+          <input v-model="lastName" type="text" name="lastName" />
+
+         <span style="margin-bottom: 10px">
+            Seu nome completo é: {{fullName}}
+         </span>
+
+          <span>Selecione o pais onde você nasceu: </span>
+          <select name="countries" id="countries" v-model="countriesSelecteds">
+            <option
+              v-for="country in countries"
+              :key="country.id"
+              :value="country.name"
+            >
+              {{country.name}}
+            </option>
+          </select>
+
+         <span style="margin-top:10px">A capital do país onde você nasceu é: 
+            {{capital}}
+         </span>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        created() {
+          fetch("https://restcountries.com/v2/all")
+            .then((res) => res.json())
+            .then((res) => (this.countries = res));
+        },
+        data() {
+          return {
+            firstName: "",
+            lastName: "",
+            countries: {},
+            countriesSelecteds: "",
+            capital: "",
+          };
+        },
+        computed: {
+          fullName() {
+            return this.firstName + " " + this.lastName;
+          },
+        },
+        watch: {
+          countriesSelecteds(value) {
+            const capitalOfCountry = this.countries.find(
+              (pais) => pais.name === value
+            );
+            this.capital = capitalOfCountry.capital;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+<style>
+  .form {
+    width: 20rem;
+    height: 20rem;
+    margin: auto;
+    background-color: rgb(233, 167, 189);
+    color: #fff;
+    border-radius: 10px;
+  }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 10px;
+  }
+  input {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+</style>
