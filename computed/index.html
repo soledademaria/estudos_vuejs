@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Computed</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- V-if -->
+
+    <div id="app">
+        <p>{{total}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data(){
+            return{
+                price: 59,
+                discount: 10
+            }
+        },
+        computed: {
+            total(){
+                return this.price - this.discount
+            }
+        }
+      });
+    </script>
+  </body>
+</html>
+<style></style>
