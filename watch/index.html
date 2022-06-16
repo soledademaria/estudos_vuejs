@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="vue.js"></script>
+    <title>Watch Assincrono</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="cep" type="text" placeholder="cep" maxlength="8" />
+      <p>Meu endereço é: <br>
+        Rua: {{adress.logradouro}} <br>
+        Bairro {{adress.bairro}}</p>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            cep: "",
+            adress: "",
+          };
+        },
+        watch: {
+          cep(value) {
+            if (value.length === 8) {
+              fetch(`https://viacep.com.br/ws/${value}/json/`)
+                .then((res) => res.json())
+                .then(res => {
+                    this.adress = res
+                });
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
