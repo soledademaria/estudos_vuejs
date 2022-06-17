@@ -13,7 +13,9 @@
       <button @click="isColumnOrientation = !isColumnOrientation">
         Reverse Position
       </button>
-      <button @click="generateColor">Change Color</button>
+      <button :style="{background: bgColor}" @click="generateColor">
+        Change Color
+      </button>
       <ul :class="{column: isColumnOrientation}" @click="generateColor">
         <li v-for="card in cards" :style="{background: bgColor}">
           {{card.title}}
