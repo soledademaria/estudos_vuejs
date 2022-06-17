@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Diretivas e Hooks</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <p :class="color">Texto azul</p>
+      <p :class="{active: isActive}">Mostrar texto</p>
+
+      <button @click="isActive = !isActive">Click</button> -->
+      <button @click="isColumnOrientation = !isColumnOrientation">
+        Reverse Position
+      </button>
+      <button @click="generateColor">Change Color</button>
+      <ul :class="{column: isColumnOrientation}" @click="generateColor">
+        <li v-for="card in cards" :style="{background: bgColor}">
+          {{card.title}}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          color: "green",
+          isActive: false,
+          isColumnOrientation: false,
+          bgColor: "#b4e",
+        },
+        methods: {
+          generateColor() {
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            this.bgColor = color;
+          },
+        },
+        computed: {
+          cards() {
+            return [
+              {
+                title: "Sobre",
+              },
+              {
+                title: "Produtos",
+              },
+              {
+                title: "Serviços",
+              },
+              {
+                title: "Contato",
+              },
+            ];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+<style>
+  .blue {
+    color: blue;
+  }
+  .green {
+    color: green;
+  }
+  .active {
+    background: red;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: monospace;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+  .column {
+    flex-direction: column;
+  }
+  li {
+    padding: 20px;
+    background: #84e;
+    color: #fff;
+    border-radius: 4px;
+    margin: 10px;
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+  }
+  button {
+    border: none;
+    outline: none;
+    padding: 15px;
+    color: #fff;
+    background: rgb(153, 153, 153);
+    margin-left: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
