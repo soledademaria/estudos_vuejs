@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>V-model</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="message" type="text">
+        <p>{{message}}</p>
+
+        <input v-model="email" id="email" type="checkbox">
+        <label for="email">Receber Email</label>
+
+        <input v-model="terms" type="checkbox" id="terms">
+        <label for="terms">Termos e Condições</label>
+
+        <p>Receber emails: <strong>{{email}}</strong></p>
+        <p>Receber termos: <strong>{{terms}}</strong></p>
+
+        <input v-model="color" type="radio" id="blue" value="blue">
+        <label for="blue">Azul</label>
+
+        <input v-model="color" type="radio" id="red" value="red">
+        <label for="red">Vermelho</label>
+
+        <p>Cor: <strong>{{color}}</strong></p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data(){
+                return{
+                    message: 'Essa é a mensagem inicial',
+                    email: true,
+                    terms: false,
+                    color: ''
+                }
+            }
+        })
+    </script>
+</body>
+</html>
