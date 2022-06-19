@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>V-model</title>
     <script src="vue.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <input v-model="message" type="text">
-        <p>{{message}}</p>
+      <input v-model="message" type="text" />
+      <p>{{message}}</p>
 
-        <input v-model="email" id="email" type="checkbox">
-        <label for="email">Receber Email</label>
+      <input v-model="email" id="email" type="checkbox" />
+      <label for="email">Receber Email</label>
 
-        <input v-model="terms" type="checkbox" id="terms">
-        <label for="terms">Termos e Condições</label>
+      <input v-model="terms" type="checkbox" id="terms" />
+      <label for="terms">Termos e Condições</label>
 
-        <p>Receber emails: <strong>{{email}}</strong></p>
-        <p>Receber termos: <strong>{{terms}}</strong></p>
+      <p>Receber emails: <strong>{{email}}</strong></p>
+      <p>Receber termos: <strong>{{terms}}</strong></p>
 
-        <input v-model="color" type="radio" id="blue" value="blue">
-        <label for="blue">Azul</label>
+      <input v-model="color" type="radio" id="blue" value="blue" />
+      <label for="blue">Azul</label>
 
-        <input v-model="color" type="radio" id="red" value="red">
-        <label for="red">Vermelho</label>
+      <input v-model="color" type="radio" id="red" value="red" />
+      <label for="red">Vermelho</label>
 
-        <p>Cor: <strong>{{color}}</strong></p>
-    </div>
+      <p>Cor: <strong>{{color}}</strong></p>
+
+      <select v-model="fruit">
+        <option value="">Selecione uma fruta</option>
+        <option value="banana">Banana</option>
+        <option value="morango">Morango</option>
+        <option value="uva">Uva</option>
+      </select>
+
+      <p>Fruta: <strong>{{fruit}}</strong></p>
+
+      <textarea v-model.lazy="message"></textarea>
+      <input v-model.number="total" type="text">
+      {{total}}
+
+      <!-- .lazy: a reatividade do v-model só ocorre quando o usuário muda
+        de campo, ou sai do campo de input
+    .number: transforma o input em number e não string
+    .trim: remove os espaços em branco
+    --></div>
 
     <script>
-        const vm = new Vue({
-            el: '#app',
-            data(){
-                return{
-                    message: 'Essa é a mensagem inicial',
-                    email: true,
-                    terms: false,
-                    color: ''
-                }
-            }
-        })
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            message: "Essa é a mensagem inicial",
+            email: true,
+            terms: false,
+            color: "",
+            fruit: "",
+            total: ''
+          };
+        },
+      });
     </script>
-</body>
+  </body>
 </html>
