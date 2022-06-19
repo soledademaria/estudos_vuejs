@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Criador de botões</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="form">
+        <h1>Customize aqui o seu botão</h1>
+
+        <div class="grid">
+          <div class="right-column">
+            <span>Escolha uma cor de fundo: </span>
+            <input v-model="btn.background" type="color" /> <br>
+
+            <span>Informe a altura: </span>
+            <input v-model="btn.height" type="text" /> <br>
+
+            <span>Selecione a fonte: </span>
+            <select v-model="btn.fontFamily">
+                <option value="">Selecione uma fonte</option>
+                <option value="arial">Arial</option>
+                <option value="monospace">Monospace</option>
+                <option value="cursive">Cursiva</option>
+            </select>
+        </div>
+        
+        <div class="left-column">
+              <span>Escolha uma cor para o texto: </span>
+              <input v-model="btn.color" type="color" /> <br>
+        
+             <span>Informe a largura: </span>
+            <input v-model="btn.width" type="text" /> <br>
+
+           
+          
+            <span>Informe o tamanho da fonte: </span>
+            <input v-model="btn.fontSize" type="text" /> <br>
+            
+            <!-- <span>Informe o alinhamento: </span>
+            <select v-model="btn.textAlign">
+                <option value="">Selecione o alinhamento</option>
+                <option value="center">Centro</option>
+                <option value="left">Esquerda</option>
+                <option value="right">Direita</option>
+            </select>  -->
+        </div>
+
+    </div>
+    <div class="result">
+      <a href="/"
+        :style="btn"
+      >
+        Esse é o seu botão customizado!
+      </a href="/">
+    </div>
+      </div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+           btn: {
+            background: "",
+            color: "",
+            width: '200px',
+            height: '0px',
+            fontSize: '10px',
+            fontFamily:'',
+            textAlign: ''
+           }
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  body {
+    background: cadetblue;
+    font-family: sans-serif;
+  }
+  h1 {
+    color: rgb(31, 31, 31);
+  }
+  .form {
+  
+    background-color: rgb(198, 215, 216);
+    width: 50rem;
+    height: 19rem;
+    margin: auto;
+    text-align: center;
+  }
+  .grid{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 10px;
+  }
+  .right-column{
+    text-align: left;
+  }
+  .left-column{
+    text-align: left;
+  }
+  .left-column input {
+    margin-bottom: 10px;
+  }
+  .right-column input {
+    margin-bottom: 10px;
+  }
+  .result {
+    margin-top: 20px;
+  }
+  a {
+    text-decoration: none;
+    display: block;
+  }
+  .result{
+    display: flex;
+    justify-content: center;
+    
+  }
+</style>
