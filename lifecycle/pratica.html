@@ -12,6 +12,9 @@
           <strong>{{key}}:</strong> {{dado}}
         </li>
       </ul>
+      <span>Valor do contador: {{count}}</span>
+
+      <button @click="count++">Adicionar + 1</button>
     </div>
 
     <script>
@@ -20,6 +23,7 @@
         data() {
           return {
             dados: {},
+            count: 0
           };
         },
         methods: {
@@ -30,10 +34,17 @@
                 this.dados = res;
               });
           },
+          onChangeCount(){
+           const newTitle = this.count
+           document.title = newTitle
+          }
         },
         created() {
           this.getMyProfile();
         },
+        updated(){
+            this.onChangeCount()
+        }
       });
     </script>
   </body>
