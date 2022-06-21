@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <form v-if="!showResult">
+        <label for="name">Nome completo: </label>
+        <input v-model="name" id="name" type="text" required />
+
+        <label for="email">Email: </label>
+        <input v-model="email" id="email" type="email" required /> <br />
+
+        <label for="contact">Contato: </label>
+        <input v-model="contact" id="contact" type="tel" required />
+
+        <label for="note">Sugestão: </label>
+        <textarea v-model="note"></textarea>
+
+        <div class="d-flex justify-end">
+          <button @click="changeStatus">Enviar</button>
+        </div>
+      </form>
+      <div v-if="showResult" class="result">
+        <label for="name">Nome completo: </label>
+        <input v-model="name" id="name" type="text" required />
+
+        <label for="email">Email: </label>
+        <input v-model="email" id="email" type="email" required /> <br />
+
+        <label for="contact">Contato: </label>
+        <input v-model="contact" id="contact" type="tel" required />
+
+        <label for="note">Sugestão: </label>
+        <textarea v-model="note"></textarea>
+      </div>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            name: "",
+            email: "",
+            contact: "",
+            note: "",
+            showResult: false,
+          };
+        },
+        methods: {
+          changeStatus() {
+            this.showResult = true;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+<style>
+  body {
+    background: rgb(179, 3, 76);
+    font-family: cursive;
+    color: antiquewhite;
+    margin: 0px;
+  }
+
+  form,
+  .result {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.637);
+    margin: 100px auto;
+    padding: 10px;
+    width: 550px;
+    height: 300px;
+    border-radius: 10px;
+  }
+  form input,
+  textarea {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .result input,
+  textarea {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  button {
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: rgba(79, 11, 236, 0.705);
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .d-flex {
+    display: flex;
+  }
+  .justify-end {
+    justify-content: end;
+  }
+</style>
