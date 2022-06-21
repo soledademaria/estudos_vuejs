@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ciclo de vida Vue js</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <span>{{message}}</span> <br />
+      <span> {{dados}}</span>
+
+      <button @click="count++">Contador</button>
+      <span>{{count}}</span>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            message: "Minha mensagem",
+            dados: {},
+            count: 0
+          };
+        },
+        methods: {
+          puxarApi() {
+            fetch("https://api.github.com/users/origamid")
+              .then((res) => res.json())
+              .then((res) => {
+                this.dados = res;
+              });
+          },
+        },
+        // ainda não existem os dados do objeto data
+        beforeCreate() {
+          console.log("beforeCreate", this.message);
+        },
+
+        created() {
+          this.puxarApi();
+          console.log("created", this.$el);
+        },
+
+        beforeMount() {
+          console.log("beforeMount", this.message);
+          console.log("beforeMount", this.$el);
+        },
+
+        mounted(){
+            console.log('mounted', this.$el);
+        },
+
+        beforeUpdate(){
+            console.log(this.count);
+        },
+
+        // updated(){
+        //     console.log(this.count);
+        // }
+      });
+    </script>
+  </body>
+</html>
