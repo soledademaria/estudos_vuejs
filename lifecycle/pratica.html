@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prática lifecycle vue</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(dado, key) in dados" :key="dado">
+          <strong>{{key}}:</strong> {{dado}}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            dados: {},
+          };
+        },
+        methods: {
+          getMyProfile() {
+            fetch("https://api.github.com/users/mariasoledadee")
+              .then((res) => res.json())
+              .then((res) => {
+                this.dados = res;
+              });
+          },
+        },
+        created() {
+          this.getMyProfile();
+        },
+      });
+    </script>
+  </body>
+</html>
